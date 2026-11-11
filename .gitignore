@@ -1,0 +1,14 @@
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+backend/spark2pay.db
+backend/uploads/
+
+# Node
+node_modules/
+dist/
+
+# Env
+.env

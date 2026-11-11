@@ -1,0 +1,95 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ------------------------------------------------------------------ */
+/* Spark2Pay design system - dark agentic finance cockpit              */
+/* ------------------------------------------------------------------ */
+
+@layer base {
+  html {
+    @apply bg-ink-900 text-fog-bright font-body antialiased;
+  }
+  body {
+    @apply min-h-screen;
+  }
+  ::selection {
+    @apply bg-bolt-deep text-white;
+  }
+  /* JetBrains Mono for every number in the product */
+  .tnum {
+    @apply font-mono;
+    font-feature-settings: 'tnum';
+  }
+}
+
+@layer components {
+  .panel {
+    @apply bg-ink-850 border border-hairline rounded-xl shadow-panel;
+  }
+  .panel-hover {
+    @apply transition-all duration-200 ease-out hover:-translate-y-0.5 hover:shadow-lift
+           hover:border-bolt-dim;
+  }
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg px-4 h-10
+           text-sm font-semibold transition-all duration-150 ease-out
+           focus:outline-none focus-visible:ring-2 focus-visible:ring-bolt/60
+           active:scale-[0.98] disabled:opacity-40 disabled:pointer-events-none;
+  }
+  .btn-primary {
+    @apply btn bg-bolt text-white hover:bg-bolt-soft;
+  }
+  .btn-ghost {
+    @apply btn text-fog hover:text-fog-bright hover:bg-ink-700 border border-hairline;
+  }
+  .btn-danger {
+    @apply btn bg-coral-dim text-coral border border-coral/30 hover:bg-coral/20;
+  }
+  .input {
+    @apply w-full h-11 rounded-lg bg-ink-800 border border-hairline px-3.5 text-sm
+           text-fog-bright placeholder:text-fog-dim
+           focus:outline-none focus:border-bolt/70 focus:ring-2 focus:ring-bolt/20
+           transition-colors;
+  }
+  .label {
+    @apply block text-xs font-semibold uppercase tracking-wider text-fog-dim mb-1.5;
+  }
+  .hairline-top {
+    @apply border-t border-hairline;
+  }
+}
+
+/* The one dealt moment: the spark pulse when PayPal completes an action */
+@keyframes spark-pulse {
+  0% { box-shadow: 0 0 0 0 rgba(255, 178, 36, 0.45); }
+  70% { box-shadow: 0 0 0 14px rgba(255, 178, 36, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(255, 178, 36, 0); }
+}
+.spark-pulse {
+  animation: spark-pulse 900ms ease-out 2;
+}
+
+@keyframes spark-breathe {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.55; }
+}
+.spark-breathe {
+  animation: spark-breathe 2.4s ease-in-out infinite;
+}
+
+/* Subtle loader */
+@keyframes s2p-spin {
+  to { transform: rotate(360deg); }
+}
+.spinner {
+  animation: s2p-spin 700ms linear infinite;
+}
+
+/* Scrollbar - quiet, matching the ink palette */
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background: #1C2844; border-radius: 8px;
+  border: 2px solid #070B14;
+}
