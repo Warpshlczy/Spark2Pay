@@ -121,6 +121,22 @@ export interface AIStatus {
   }
 }
 
+export interface SettingsStatus {
+  ai: {
+    configured_provider: string
+    effective_provider: string
+    model: string
+    openai_key: string | null
+  }
+  execution: {
+    mode: 'sandbox' | 'simulation'
+    client_id: string | null
+    client_secret: string | null
+    webhook_id: string | null
+  }
+  editable_keys: string[]
+}
+
 export interface User {
   id: number
   username: string

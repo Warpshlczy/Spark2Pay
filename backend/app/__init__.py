@@ -49,6 +49,11 @@ def create_app(config_name='default'):
     from app.api.v1 import api_v1
     app.register_blueprint(api_v1, url_prefix='/api/v1')
 
+    # Runtime-editable settings (Settings UI overrides, persisted locally)
+    with app.app_context():
+        from app.services.runtime_config import init_runtime_config
+        init_runtime_config(app)
+
     # Health check endpoint
     @app.route('/health')
     def health_check():

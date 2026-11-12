@@ -19,6 +19,7 @@ from app.api.v1.statistics import statistics_bp
 from app.api.v1.calendar import calendar_bp
 from app.api.v1.ai import ai_bp
 from app.api.v1.paypal import paypal_bp
+from app.api.v1.settings import settings_bp
 
 api_v1.register_blueprint(auth_bp, url_prefix='/auth')
 api_v1.register_blueprint(subscriptions_bp, url_prefix='/subscriptions')
@@ -32,6 +33,7 @@ api_v1.register_blueprint(statistics_bp, url_prefix='/statistics')
 api_v1.register_blueprint(calendar_bp, url_prefix='/calendar')
 api_v1.register_blueprint(ai_bp, url_prefix='/ai')
 api_v1.register_blueprint(paypal_bp, url_prefix='/paypal')
+api_v1.register_blueprint(settings_bp, url_prefix='/settings')
 
 
 @api_v1.route('/status')

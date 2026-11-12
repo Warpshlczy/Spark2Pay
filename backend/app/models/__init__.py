@@ -26,6 +26,7 @@ from app.models.ml_insight import MLInsight
 from app.models.receipt import Receipt
 from app.models.paypal_action import PayPalAction
 from app.models.subscription_usage import SubscriptionUsage
+from app.models.app_setting import AppSetting
 
 __all__ = [
     'Base',
@@ -46,5 +47,6 @@ __all__ = [
     'MLInsight',
     'Receipt',
     'PayPalAction',
-    'SubscriptionUsage'
+    'SubscriptionUsage',
+    'AppSetting'
 ]
