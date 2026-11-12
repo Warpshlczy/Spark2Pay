@@ -44,9 +44,10 @@ immutable audit record, and marks the subscription cancelled in your tracker.
    the same trail, so PayPal-side cancellations propagate even if they happen
    outside the app.
 4. **Human-in-the-loop frontend** — a bespoke dark UI (React 18 + TypeScript +
-   Tailwind, hand-built design system) with an advice feed, approval page
-   ("Step 1 of 2 · Approval required"), savings count-up completion moment, a
-   full Action Log, and a Settings page showing live AI/PayPal configuration.
+   Tailwind, hand-built design system) with an advice feed, a PayPal-styled
+   approval simulator (sandbox banner, buyer account, Agree & Pay / Cancel
+   and return), savings count-up completion moment, a full Action Log, and a
+   Settings page with live, editable AI/execution configuration.
 
 **Why it's agentic:** the AI perceives (subscription + usage data), decides
 (which actions merit a PayPal call), and acts (through the execution layer) —
@@ -85,8 +86,9 @@ Sign in at http://localhost:5173 — `demo` / `Spark2Pay2026`. Then:
 
 1. Dashboard: AI advice lists savings opportunities with savings amounts.
 2. Click **Manage with PayPal** on a PayPal-managed card.
-3. Approve on the confirmation page (or connect real sandbox keys for the
-   hosted PayPal flow — see README "Connecting the real PayPal sandbox").
+3. Approve on the PayPal-styled sandbox simulator (with real sandbox keys,
+   pay orders open PayPal's hosted approval page instead — see README
+   "Connecting the real PayPal sandbox").
 4. Watch the savings count-up, then check **Action Log**: the audited record.
 5. The subscription is now marked cancelled — the loop is closed.
 
@@ -106,7 +108,7 @@ Sign in at http://localhost:5173 — `demo` / `Spark2Pay2026`. Then:
 
 1. **0:00–0:20 — Problem.** Subscription trackers stop at advice. Screen: dashboard header.
 2. **0:20–0:50 — The advice.** AI savings feed: "Cancel Netflix Premium — unused for 92 days, saves $22.99/mo", confidence, PayPal-yellow button.
-3. **0:50–1:20 — The approval.** Click *Manage with PayPal* → "Step 1 of 2 · Approval required" page: what will happen, savings, PayPal subscription id, simulation/sandbox badge. Click *Approve & execute*.
+3. **0:50–1:20 — The approval.** Click *Manage with PayPal* → the PayPal-styled sandbox simulator: buyer account, order summary, what will happen, savings, billing agreement id. Click *Agree & Cancel*. (With real sandbox keys, pay orders open PayPal's hosted approval page — same shape.)
 4. **1:20–1:50 — The money moment.** Green check "Done — via PayPal", savings count-up ($22.99/mo ≈ $275.88/yr) with the spark pulse.
 5. **1:50–2:20 — The audit.** Action Log: the completed CANCEL record with PayPal reference and mode badge. Subscriptions page: Netflix now "cancelled", monthly total down.
 6. **2:20–2:50 — Under the hood.** Settings page (AI provider + PayPal layer status), then a flash of `ai_service.py` tool schema and `paypal_service.py` cancel path. Closing line: "AI finds the waste. PayPal executes the savings. You stay in control."

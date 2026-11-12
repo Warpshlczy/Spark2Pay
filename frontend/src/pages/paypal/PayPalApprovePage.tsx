@@ -24,7 +24,10 @@ export default function PayPalApprovePage() {
     api.get<{ data: PayPalAction }>(`/paypal/actions/${actionId}`)
       .then(r => {
         setAction(r.data)
-        setPhase(r.data.status === 'pending_approval' ? 'confirm' : 'gone')
+        // The PayPal simulator executes directly, then lands here: a
+        // completed action renders the merchant receipt (DoneCard).
+        setPhase(r.data.status === 'pending_approval' ? 'confirm'
+                 : r.data.status === 'completed' ? 'done' : 'gone')
       })
       .catch(exc => {
         setError(exc instanceof ApiError ? exc.message : 'Failed to load action')

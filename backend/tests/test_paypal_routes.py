@@ -24,7 +24,7 @@ def test_begin_and_complete_cancel_closes_loop(client, seeded_user):
     assert body['status'] == 'pending_approval'
     assert body['mode'] == 'simulation'
     assert body['estimated_monthly_savings'] == 22.99
-    assert '/paypal/approve/' in body['approve_link']
+    assert '/paypal/simulator/' in body['approve_link']
     action_id = body['action_id']
 
     # 2. Complete

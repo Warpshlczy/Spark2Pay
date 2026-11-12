@@ -186,7 +186,7 @@ class PayPalService:
         if cls.is_simulation():
             return {
                 'order_id': cls._sim_id('ORD'),
-                'approve_link': return_url,
+                'approve_link': f'{frontend}/paypal/simulator/{action_id}',
                 'status': 'CREATED',
                 'mode': 'simulation'
             }

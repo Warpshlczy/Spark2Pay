@@ -7,6 +7,7 @@ import SubscriptionsPage from './pages/SubscriptionsPage'
 import ActionLogPage from './pages/ActionLogPage'
 import SettingsPage from './pages/SettingsPage'
 import PayPalApprovePage from './pages/paypal/PayPalApprovePage'
+import PayPalSimulatorPage from './pages/paypal/PayPalSimulatorPage'
 import PayPalReturnPage from './pages/paypal/PayPalReturnPage'
 import PayPalCancelPage from './pages/paypal/PayPalCancelPage'
 
@@ -20,6 +21,7 @@ export default function App() {
       <Route path="/login" element={<LoginPage />} />
 
       {/* PayPal approval loop routes - reachable with or without chrome */}
+      <Route path="/paypal/simulator/:actionId" element={<PayPalSimulatorPage />} />
       <Route path="/paypal/approve/:actionId" element={<PayPalApprovePage />} />
       <Route path="/paypal/return" element={<PayPalReturnPage />} />
       <Route path="/paypal/cancel" element={<PayPalCancelPage />} />

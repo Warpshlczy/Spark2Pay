@@ -22,7 +22,7 @@ def test_simulation_create_order(app):
             description='Test order', action_id=1, subscription_id=5
         )
         assert result['order_id'].startswith('SIM-ORD-')
-        assert '/paypal/return?action_id=1' in result['approve_link']
+        assert result['approve_link'].endswith('/paypal/simulator/1')
         assert result['status'] == 'CREATED'
 
 

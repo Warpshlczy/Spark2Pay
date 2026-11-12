@@ -190,6 +190,7 @@ def begin_action():
     db.session.commit()
 
     # 2. Create the PayPal artifact that needs user approval
+    frontend = current_app.config.get('FRONTEND_URL', 'http://localhost:5173')
     try:
         if action_type == PayPalAction.ACTION_PAY:
             result = PayPalService.create_order(
@@ -202,11 +203,16 @@ def begin_action():
             action.paypal_order_id = result['order_id']
             approve_link = result['approve_link']
         else:
-            # PayPal subscription cancel/suspend/activate has no hosted approval
-            # screen, so Spark2Pay provides the confirmation step locally - the
-            # two-step pattern (approve -> execute) stays consistent.
-            approve_link = (f"{current_app.config.get('FRONTEND_URL', 'http://localhost:5173')}"
-                            f"/paypal/approve/{action.id}")
+            # Real PayPal subscription cancel/suspend/activate has no hosted
+            # approval screen, so Spark2Pay provides the confirmation step
+            # locally - the two-step pattern (approve -> execute) stays
+            # consistent.
+            approve_link = f'{frontend}/paypal/approve/{action.id}'
+        if PayPalService.is_simulation():
+            # Simulation mode routes the approval through the PayPal-styled
+            # simulator screen so the demo shows the real flow shape:
+            # approve on PayPal -> return to the merchant -> capture/cancel.
+            approve_link = f'{frontend}/paypal/simulator/{action.id}'
     except (PayPalAPIError, PayPalConfigError) as exc:
         action.status = PayPalAction.STATUS_FAILED
         action.error = str(exc)
