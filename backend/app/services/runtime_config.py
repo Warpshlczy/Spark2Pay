@@ -37,6 +37,13 @@ def init_runtime_config(app):
     app.extensions['config_env_defaults'] = {
         key: app.config.get(key) for key in SETTING_KEYS
     }
+    # Self-heal: ensure the app_settings table exists on databases seeded
+    # before this model was introduced (create_all only adds missing tables)
+    try:
+        from app.models import Base
+        Base.metadata.create_all(db.engine)
+    except Exception:
+        pass
     load_persisted_settings(app)
 
 
