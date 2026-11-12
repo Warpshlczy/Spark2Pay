@@ -22,7 +22,7 @@ export default function ActionLogPage() {
           Action Log
         </h1>
         <p className="mt-1 text-sm text-fog">
-          Every PayPal execution attempt, with its full audit trail
+          Every execution attempt, with its full audit trail
         </p>
       </header>
 
@@ -49,7 +49,7 @@ export default function ActionLogPage() {
                 <th className="px-5 py-3 font-semibold">Status</th>
                 <th className="px-5 py-3 text-right font-semibold">Amount</th>
                 <th className="px-5 py-3 text-right font-semibold">Saved /mo</th>
-                <th className="px-5 py-3 font-semibold">PayPal ref</th>
+                <th className="px-5 py-3 font-semibold">Reference</th>
                 <th className="px-5 py-3 font-semibold">Mode</th>
               </tr>
             </thead>
@@ -101,7 +101,7 @@ export default function ActionLogPage() {
               {actions.length === 0 && (
                 <tr>
                   <td colSpan={8} className="px-5 py-10 text-center text-sm text-fog">
-                    No PayPal actions yet. Accept an AI recommendation on the
+                    No actions yet. Accept an AI recommendation on the
                     Dashboard to create your first audited execution.
                   </td>
                 </tr>

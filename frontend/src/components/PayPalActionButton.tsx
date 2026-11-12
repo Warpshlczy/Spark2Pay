@@ -55,7 +55,7 @@ export default function PayPalActionButton({
       if (exc instanceof ApiError) {
         setError(
           exc.code === 'not_paypal_managed'
-            ? 'This subscription is billed by card, not PayPal. Cancel it on the merchant site.'
+            ? 'This subscription is billed by card — cancel it on the merchant site.'
             : exc.message
         )
       } else {
@@ -74,7 +74,7 @@ export default function PayPalActionButton({
         {busy
           ? <Loader2 className="h-4 w-4 spinner" />
           : <Zap className="h-4 w-4" fill="currentColor" strokeWidth={1} />}
-        {busy ? 'Opening PayPal…' : label ?? 'Manage with PayPal'}
+        {busy ? 'Opening approval…' : label ?? 'Manage with PayPal'}
       </button>
       {error && <p className="mt-2 text-xs leading-relaxed text-coral">{error}</p>}
     </div>

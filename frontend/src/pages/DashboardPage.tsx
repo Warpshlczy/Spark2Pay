@@ -134,11 +134,11 @@ function StatRow({ subs, advice }: {
                      value={money(counted)}
                      sub={advice?.summary ?? 'No analysis yet'}
                      pulse={savings > 0} />
-      <SparkStatCard label="PayPal layer" icon={<Sparkles className="h-4 w-4" />}
+      <SparkStatCard label="Execution layer" icon={<Sparkles className="h-4 w-4" />}
                      value={advice?.paypal_mode === 'sandbox' ? 'Sandbox' : 'Simulation'}
                      sub={advice?.paypal_mode === 'sandbox'
-                          ? 'Executing against real PayPal sandbox'
-                          : 'Deterministic local execution demo'} />
+                          ? 'Connected to the PayPal sandbox'
+                          : 'Local simulator — full audit loop'} />
     </div>
   )
 }

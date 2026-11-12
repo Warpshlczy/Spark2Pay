@@ -39,7 +39,7 @@ export default function SubscriptionsPage() {
             Subscriptions
           </h1>
           <p className="mt-1 text-sm text-fog">
-            {activeCount} active · PayPal-managed ones can be executed here
+            {activeCount} active · one-click execution for linked subscriptions
           </p>
         </div>
         <label className="flex cursor-pointer items-center gap-2 text-xs text-fog">
@@ -91,7 +91,7 @@ function SubRow({ sub, onChanged }: { sub: Subscription; onChanged: () => void }
               ? <span className="inline-flex items-center gap-1 rounded-full border
                                  border-bolt/30 bg-bolt-dim/40 px-2 py-0.5 text-[10px]
                                  font-semibold text-bolt-soft">
-                  <Zap className="h-3 w-3" fill="currentColor" /> PayPal-managed
+                  <Zap className="h-3 w-3" fill="currentColor" /> one-click
                 </span>
               : <span className="inline-flex items-center gap-1 rounded-full border
                                  border-hairline px-2 py-0.5 text-[10px] font-semibold
@@ -121,7 +121,7 @@ function SubRow({ sub, onChanged }: { sub: Subscription; onChanged: () => void }
           subscriptionId={sub.id}
           actionType="cancel"
           reason={`Manual cancellation from Subscriptions page`}
-          label="Cancel via PayPal"
+          label="One-click cancel"
           onDone={onChanged}
           className="w-full sm:w-auto"
         />

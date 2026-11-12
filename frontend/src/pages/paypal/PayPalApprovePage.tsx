@@ -69,8 +69,8 @@ export default function PayPalApprovePage() {
             </h1>
             <p className="mt-2 text-[13px] leading-relaxed text-fog">
               The AI proposed this action{action.reason ? ` — ${action.reason}` : ''}.
-              Nothing has happened yet. Approving will execute it through PayPal
-              and write an audit record.
+              Nothing has happened yet. Approving will execute it and write an
+              audit record.
             </p>
 
             <dl className="mt-5 flex flex-col gap-2.5 border-t border-hairline pt-4 text-[13px]">
